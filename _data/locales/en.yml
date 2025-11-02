@@ -15,6 +15,7 @@ tabs:
   tags: Tags
   archives: Archives
   about: About
+  alumni: Alumni
 
 # the text displayed in the search bar & search results
 search:
@@ -37,8 +38,7 @@ copyright:
   # Displayed in the footer
   brief: Some rights reserved.
   verbose: >-
-    Except where otherwise noted, the blog posts on this site are licensed
-    under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.
+    Content here is maintained by the official CS Department representatives.
 
 meta: Using the :THEME theme for :PLATFORM.
 

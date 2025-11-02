@@ -165,6 +165,10 @@ collections:
   tabs:
     output: true
     sort_by: order
+  alumni:
+    output: true
+    permalink: /alumni/:path/
+
 
 defaults:
   - scope:
@@ -177,6 +181,7 @@ defaults:
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
+    
   - scope:
       path: _drafts
     values:

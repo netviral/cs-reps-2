@@ -1,6 +1,32 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/breakpoints' as bp;
 @use '../abstracts/placeholders';
+.back-button {
+  margin: 1rem 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: var(--link-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    svg {
+      margin-right: 0.5rem;
+      width: 30px;
+      height: 30px;
+      fill: currentColor; // 👈 adapts automatically to dark/light theme
+      transition: fill 0.2s ease;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 
 #post-list {
   margin-top: 2rem;

@@ -4,6 +4,40 @@ layout: default
 
 {% include lang.html %}
 
+
+<div class="quick-links container my-4">
+  <h2 class="h5 mb-3">Quick Links</h2>
+  <div class="row g-3">
+    <div class="col-6 col-md-3">
+      <a href="/faqs" class="btn btn-outline-primary w-100">FAQs</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/whatsapp-groups" class="btn btn-outline-primary w-100">WhatsApp Groups</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/help" class="btn btn-outline-primary w-100">Help</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/grievance" class="btn btn-outline-primary w-100">Grievance Form</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/trajectories" class="btn btn-outline-primary w-100">Trajectory Samples</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/resources" class="btn btn-outline-primary w-100">Resources</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/categories" class="btn btn-outline-primary w-100">Search by Categories</a>
+    </div>
+    <div class="col-6 col-md-3">
+      <a href="/tags" class="btn btn-outline-primary w-100">Search by Tags</a>
+    </div>
+  </div>
+</div>
+
+
+
+
 {% assign all_pinned = site.posts | where: 'pin', 'true' %}
 {% assign all_normal = site.posts | where_exp: 'item', 'item.pin != true and item.hidden != true' %}
 

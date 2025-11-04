@@ -6,34 +6,39 @@
     class="d-flex align-items-center justify-content-between px-lg-3 h-100"
   >
     <nav id="breadcrumb" aria-label="Breadcrumb">
-      {% assign paths = page.url | split: '/' %}
+      {% assign paths = page.url | split: '/' | reject: '' %}
 
       {% if paths.size == 0 or page.layout == 'home' %}
         <!-- index page -->
         <span>{{ site.data.locales[include.lang].tabs.home | capitalize }}</span>
 
       {% else %}
+        <!-- Always start with Home -->
+        <span>
+          <a href="{{ '/' | relative_url }}">
+            {{- site.data.locales[include.lang].tabs.home | capitalize -}}
+          </a>
+        </span>
+
         {% for item in paths %}
-          {% if forloop.first %}
+          {% assign segment = item | strip %}
+
+          {% if segment == 'alumni' %}
+            <!-- Alumni main page -->
             <span>
-              <a href="{{ '/' | relative_url }}">
-                {{- site.data.locales[include.lang].tabs.home | capitalize -}}
-              </a>
+              <a href="{{ '/alumni/' | relative_url }}">Alumni</a>
+            </span>
+
+          {% elsif segment contains '20' and segment.size == 4 %}
+            <!-- Batch year, e.g., 2022 -->
+            <span>
+              <a href="{{ '/alumni/' | append: segment | append: '/' | relative_url }}">{{ segment }}</a>
             </span>
 
           {% elsif forloop.last %}
-            {% if page.collection == 'tabs' %}
-              <span>{{ site.data.locales[include.lang].tabs[item] | default: page.title }}</span>
-            {% else %}
-              <span>{{ page.title }}</span>
-            {% endif %}
+            <!-- Final page (e.g., name) -->
+            <span>{{ page.title }}</span>
 
-          {% elsif page.layout == 'category' or page.layout == 'tag' %}
-            <span>
-              <a href="{{ item | append: '/' | relative_url }}">
-                {{- site.data.locales[include.lang].tabs[item] | default: page.title -}}
-              </a>
-            </span>
           {% endif %}
         {% endfor %}
       {% endif %}
@@ -51,7 +56,7 @@
         {%- capture tab_key -%}{{ page.url | split: '/' }}{%- endcapture -%}
         {{- site.data.locales[include.lang].tabs[tab_key] | default: page.title -}}
       {% else %}
-        {{- site.data.locales[include.lang].layout[page.layout] | default: page.layout | capitalize -}}
+        {{- site.data.locales[include.lang].layout[page.layout] | default: page.title | capitalize -}}
       {% endif %}
     </div>
 

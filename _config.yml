@@ -169,6 +169,15 @@ collections:
   alumni:
     output: true
     permalink: /alumni/:path/
+  certifications:
+    output: true
+    permalink: /certifications/:title/
+  opportunities:
+    output: true
+    permalink: /opportunities/:title/
+  projects:
+    output: true
+    permalink: /projects/:title/
 
 
 defaults:
@@ -193,6 +202,25 @@ defaults:
     values:
       layout: page
       permalink: /:title/
+  - scope:
+      path: ""
+      type: certifications
+    values:
+      layout: page
+      permalink: /certifications/:title/
+  - scope:
+      path: ""
+      type: opportunities
+    values:
+      layout: page
+      permalink: /opportunities/:title/
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: page
+      permalink: /projects/:title/
+
 
 sass:
   style: compressed

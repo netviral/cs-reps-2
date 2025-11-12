@@ -1,0 +1,140 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+<!-- ✅ Back button preserved exactly as given -->
+<div class="back-button">
+  <a href="/projects">
+    <svg fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 219.151 219.151">
+      <g>
+        <path d="M109.576,219.151c60.419,0,109.573-49.156,109.573-109.576C219.149,49.156,169.995,0,109.576,0S0.002,49.156,0.002,109.575 
+          C0.002,169.995,49.157,219.151,109.576,219.151z M109.576,15c52.148,0,94.573,42.426,94.574,94.575 
+          c0,52.149-42.425,94.575-94.574,94.576c-52.148-0.001-94.573-42.427-94.573-94.577C15.003,57.427,57.428,15,109.576,15z"/>
+        <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008 
+          c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825 
+          c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628 
+          c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+      </g>
+    </svg>
+  </a>
+</div>
+
+<!-- ✅ Main Article Content -->
+<article class="project-article px-1">
+  <div style="padding:20px 25px;">
+  <h1 class="project-title">{{ page.title | default: "Untitled Project" }}</h1>
+
+  <div class="project-meta">
+    {% if page.date %}
+      <div><i class="far fa-calendar"></i> {% include datetime.html date=page.date lang=lang %}</div>
+    {% endif %}
+    {% if page.department %}
+      <div><i class="fas fa-university"></i> {{ page.department }}</div>
+    {% endif %}
+  </div>
+
+  {% if page.advisor %}
+    <p class="project-field"><strong>Advisor:</strong> {{ page.advisor }}</p>
+  {% endif %}
+
+  {% if page.students %}
+    <p class="project-field"><strong>Students:</strong> {{ page.students }}</p>
+  {% endif %}
+
+  {% if page.categories %}
+    <div class="project-categories">
+      {% for category in page.categories %}
+        <span>{{ category }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if page.abstract %}
+    <div class="project-abstract">
+      <h3>Abstract</h3>
+      <p>{{ page.abstract }}</p>
+    </div>
+  {% endif %}
+
+  <div class="project-content content">
+    {{ content }}
+  </div>
+  </div>
+</article>
+
+<style>
+/* --- Project Detail Page Styles --- */
+
+.project-article {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  background: var(--bs-body-bg, #fff);
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color, #ddd);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+}
+
+.project-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--bs-body-color, #222);
+    text-align: center;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--bs-secondary-color, #666);
+  margin-bottom: 1rem;
+}
+
+.project-meta i {
+  margin-right: 0.3rem;
+  color: var(--bs-secondary-color, #888);
+}
+
+.project-field {
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
+  color: var(--bs-body-color, #333);
+}
+
+.project-categories {
+  margin: 0.8rem 0 1.2rem;
+}
+
+.project-categories span {
+  background: var(--bs-light-bg, #f5f5f5);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color, #666);
+  margin-right: 0.4rem;
+}
+
+.project-abstract h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: var(--bs-body-color, #222);
+}
+
+.project-abstract p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--bs-body-color, #333);
+}
+
+.project-content {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--bs-body-color, #333);
+}
+</style>

@@ -1,8 +1,8 @@
 ---
 # the default layout is 'page'
+layout: opportunities/opportunities-index
+title: Opportunities
+permalink: /opportunities/
 icon: fas fa-circle-user
 order: 2
 ---
-
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }

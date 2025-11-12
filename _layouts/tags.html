@@ -1,21 +1,82 @@
 ---
 layout: page
-# All the Tags of posts.
+# All tags from posts, certifications, opportunities, etc.
 ---
 
 <div id="tags" class="d-flex flex-wrap mx-xl-2">
-  {% assign tags = '' | split: '' %}
+  {% assign all_tags = '' | split: '' %}
+
+  {%- comment -%}
+  Collect tags from posts
+  {%- endcomment -%}
   {% for t in site.tags %}
-    {% assign tags = tags | push: t[0] %}
+    {% assign all_tags = all_tags | push: t[0] %}
   {% endfor %}
 
-  {% assign sorted_tags = tags | sort_natural %}
+  {%- comment -%}
+  Collect tags from certifications
+  {%- endcomment -%}
+  {% if site.certifications %}
+    {% for cert in site.certifications %}
+      {% if cert.tags %}
+        {% for tag in cert.tags %}
+          {% assign all_tags = all_tags | push: tag %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
-  {% for t in sorted_tags %}
+  {%- comment -%}
+  Collect tags from opportunities
+  {%- endcomment -%}
+  {% if site.opportunities %}
+    {% for opp in site.opportunities %}
+      {% if opp.tags %}
+        {% for tag in opp.tags %}
+          {% assign all_tags = all_tags | push: tag %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {%- comment -%}
+  Remove duplicates and sort
+  {%- endcomment -%}
+  {% assign unique_tags = all_tags | uniq | sort_natural %}
+
+  {%- comment -%}
+  Display tags with counts (summing across all collections)
+  {%- endcomment -%}
+  {% for t in unique_tags %}
+    {% assign count = 0 %}
+    
+    {# posts #}
+    {% if site.tags[t] %}
+      {% assign count = count | plus: site.tags[t].size %}
+    {% endif %}
+    
+    {# certifications #}
+    {% if site.certifications %}
+      {% for cert in site.certifications %}
+        {% if cert.tags contains t %}
+          {% assign count = count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    
+    {# opportunities #}
+    {% if site.opportunities %}
+      {% for opp in site.opportunities %}
+        {% if opp.tags contains t %}
+          {% assign count = count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
     <div>
       <a class="tag" href="{{ t | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">
-        {{ t -}}
-        <span class="text-muted">{{ site.tags[t].size }}</span>
+        {{ t }}
+        <span class="text-muted">{{ count }}</span>
       </a>
     </div>
   {% endfor %}

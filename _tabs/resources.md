@@ -6,12 +6,4 @@ visible: false
 title: "Resources for CS Students @Ashoka"
 permalink: /resources/
 ---
-
-#### 1. HPC
-_Last updated: {{ site.time | date: "%B %Y" }}_
-
-#### 2. Conference Grants
-_Last updated: {{ site.time | date: "%B %Y" }}_
-
-#### 3. VPC
-_Last updated: {{ site.time | date: "%B %Y" }}_
+This page is currently under development. Come back to it later, please. 
